@@ -1,4 +1,4 @@
-# 1BM170 Assignment 2 - Group 11
+# Time Series Analysis and Prediction of Electrical Blower Energy Consumption
 
 ## Project overview
 This project analyzes and forecasts industrial machine energy consumption using time series methods. The workflow covers:
