@@ -1,0 +1,60 @@
+project:
+  name: "1BM170 Assignment 2 - Group 11"
+  random_seed: 42
+
+paths:
+  data_dir: "data"
+  figures_dir: "outputs/figures"
+  tables_dir: "outputs/tables"
+
+data:
+  input_files:
+    - "KwhConsumptionBlower78_1.csv"
+    - "KwhConsumptionBlower78_2.csv"
+    - "KwhConsumptionBlower78_3.csv"
+
+preprocessing:
+  timestamp_date_column: "TxnDate"
+  timestamp_time_column: "TxnTime"
+  consumption_column: "Consumption"
+  original_index_column: "Unnamed: 0"
+  renamed_index_column: "orig_index"
+  timestamp_format: "%d %b %Y %H:%M:%S"
+  off_threshold: 1.0
+  resample_frequency: "15min"
+
+analysis:
+  moving_average_window_days: 7
+  moving_average_center: true
+  peak_quantile: 0.90
+  low_quantile: 0.10
+  acf_days_to_show: 30
+
+forecasting:
+  train_ratio: 0.8
+  horizon: 6
+  step_size: 6
+  refit_every: 6
+
+models:
+  ma_max_q: 6
+  ar_max_p: 12
+  arima_max_p: 3
+  arima_max_q: 3
+  exponential_smoothing:
+    trend: null
+    seasonal: null
+
+lstm:
+  enabled: true
+  window_size: 16
+  epochs: 30
+  batch_size: 32
+  validation_split: 0.1
+  patience: 5
+  lstm_units: 32
+
+output:
+  save_figures: true
+  save_tables: true
+  show_figures: true
